@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+		id="com.custom.settings"
+        version="0.0.1">
+
+  <name>CustomSettings</name>
+
+  <engines>
+    <engine name="cordova" version=">=4.0.0"/>
+  </engines>
+
+  <asset src="www/settings.js" target="js/settings.js"/>
+
+  <js-module src="www/settings.js" name="settings">
+    <clobbers target="settings" />
+  </js-module>
+
+  <platform name="android">
+
+    <config-file target="res/xml/config.xml" parent="/*">
+      <feature name="SettingsPlugin">
+        <param name="android-package" value="com.custom.settings.SettingsPlugin"/>
+      </feature>
+    </config-file>
+	
+	<config-file target="res/xml/config.xml" parent="/*">
+		<preference name="Fullscreen" value="false" />
+		<preference name="ShowTitle" value="true" />
+    </config-file>
+	
+	<config-file target="AndroidManifest.xml" parent="/manifest/application">
+		<activity android:name="com.custom.settings.SettingsMainActivity"></activity>
+		<activity android:name="com.custom.settings.SettingsActivity"
+            android:label="Settings"
+            android:parentActivityName="com.custom.settings.SettingsMainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.custom.settings.SettingsMainActivity"/>
+        </activity>
+    </config-file>
+	
+	<edit-config file="AndroidManifest.xml" target="/manifest/application/activity[@android:name='MainActivity']" mode="overwrite">
+         <activity android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale" android:label="@string/activity_name" android:launchMode="singleTop" android:name="MainActivity" android:windowSoftInputMode="adjustResize">
+            <intent-filter android:label="@string/launcher_name">
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+	</edit-config>
+
+    <source-file src="src/android/SettingsPlugin.java" target-dir="src/com/custom/settings/" />
+	<source-file src="src/android/SettingsMainActivity.java" target-dir="src/com/custom/settings/" />
+	<source-file src="src/android/SettingsActivity.java" target-dir="src/com/custom/settings/" />
+	<source-file src="src/android/SettingsFragment.java" target-dir="src/com/custom/settings/" />
+	
+	<resource-file src="src/android/res" target="res" />
+  </platform>
+</plugin>

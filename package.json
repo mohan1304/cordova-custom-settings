@@ -1,0 +1,16 @@
+{
+  "name": "cordova-custom-settings",
+  "version": "0.0.1",
+  "description": "",
+  "cordova": {
+    "id": "cordova-custom-settings",
+    "platforms": [
+      "android"
+    ]
+  },
+  "engines": [{
+		"name":"cordova",
+		"version":">=4.0.0"
+  }],
+  "author": "Mohan"
+}
