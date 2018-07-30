@@ -14,15 +14,12 @@ public class SettingsPlugin extends CordovaPlugin {
 
         if (action.equals("settings")) {
 
-            String name = data.getString(0);
-            //String message = "Hello, " + name;
-            //callbackContext.success(message);
-            Context context = this.cordova.getContext();
+            Context context = this.cordova.getActivity().getApplicationContext();
             cordova.getThreadPool().execute(new Runnable() {
                 public void run() {
                     Intent intent = new Intent(context, SettingsMainActivity.class);
                     context.startActivity(intent);
-                    callbackContext.success(message);
+                    callbackContext.success("sucess");
                 }
             });
 
