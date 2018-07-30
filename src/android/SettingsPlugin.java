@@ -10,11 +10,11 @@ import org.json.JSONException;
 public class SettingsPlugin extends CordovaPlugin {
 
     @Override
-    public boolean execute(String action, JSONArray data, CallbackContext callbackContext) throws JSONException {
+    public boolean execute(String action, JSONArray data, final CallbackContext callbackContext) throws JSONException {
 
         if (action.equals("settings")) {
 
-            Context context = this.cordova.getActivity().getApplicationContext();
+            final Context context = this.cordova.getActivity().getApplicationContext();
             cordova.getThreadPool().execute(new Runnable() {
                 public void run() {
                     Intent intent = new Intent(context, SettingsMainActivity.class);
