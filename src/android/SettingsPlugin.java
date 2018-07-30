@@ -13,23 +13,24 @@ public class SettingsPlugin extends CordovaPlugin {
     public boolean execute(String action, JSONArray data, final CallbackContext callbackContext) throws JSONException {
 
         if (action.equals("settings")) {
-
             final Context context = this.cordova.getActivity().getApplicationContext();
-            cordova.getThreadPool().execute(new Runnable() {
+            /*cordova.getThreadPool().execute(new Runnable() {
+                public void run() {
+                    Intent intent = new Intent(context, SettingsMainActivity.class);
+                    context.startActivity(intent);
+                    callbackContext.success("sucess");
+                }
+            });*/
+			this.cordova.runOnUiThread(new Runnable() {
                 public void run() {
                     Intent intent = new Intent(context, SettingsMainActivity.class);
                     context.startActivity(intent);
                     callbackContext.success("sucess");
                 }
             });
-
-
             return true;
-
         } else {
-            
             return false;
-
         }
     }
 }
