@@ -39,8 +39,7 @@ public class SettingsMainActivity extends CordovaActivity
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle presses on the action bar items
-        final CordovaWebView webview  = this.appView;
-        Context ctx = this.getApplicationContext();
+        final Context ctx = this.getApplicationContext();
         int actionSettingResourceID = ctx.getResources().getIdentifier("action_settings",
                 "strings", ctx.getPackageName());
         if(item.getItemId()==actionSettingResourceID){
