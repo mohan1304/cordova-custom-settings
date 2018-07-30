@@ -23,7 +23,7 @@ public class SettingsPlugin extends CordovaPlugin {
             });*/
 			this.cordova.getActivity().runOnUiThread(new Runnable() {
                 public void run() {
-                    Intent intent = new Intent(context, SettingsMainActivity.class);
+                    Intent intent = new Intent(context, SettingsActivity.class);
                     context.startActivity(intent);
                     callbackContext.success("sucess");
                 }
