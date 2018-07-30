@@ -39,15 +39,6 @@
                 android:value="com.custom.settings.SettingsMainActivity"/>
         </activity>
     </config-file>
-	
-	<!-- <edit-config file="AndroidManifest.xml" target="/manifest/application/activity[@android:label='@string/activity_name']" mode="overwrite">
-         <activity android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale" android:label="@string/activity_name" android:launchMode="singleTop" android:name="MainActivity" android:windowSoftInputMode="adjustResize">
-            <intent-filter android:label="@string/launcher_name">
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-	</edit-config> -->
 
     <source-file src="src/android/SettingsPlugin.java" target-dir="src/com/custom/settings/" />
 	<source-file src="src/android/SettingsMainActivity.java" target-dir="src/com/custom/settings/" />
