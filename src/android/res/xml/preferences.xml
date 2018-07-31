@@ -6,4 +6,9 @@
         android:selectAllOnFocus="true"
         android:singleLine="true"
         android:title="TC URL" />
+	<EditTextPreference
+        android:key="fsc_url"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="FSC URL" />
 </PreferenceScreen>
