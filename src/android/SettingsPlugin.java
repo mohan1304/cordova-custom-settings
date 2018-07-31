@@ -1,11 +1,16 @@
 package com.custom.settings;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 
 import org.apache.cordova.*;
 import org.json.JSONArray;
 import org.json.JSONException;
+
+import java.util.Map;
 
 public class SettingsPlugin extends CordovaPlugin {
 
