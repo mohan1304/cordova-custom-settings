@@ -9,6 +9,7 @@ import android.preference.PreferenceManager;
 import org.apache.cordova.*;
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.Map;
 
