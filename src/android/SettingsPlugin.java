@@ -28,31 +28,33 @@ public class SettingsPlugin extends CordovaPlugin {
                 }
             });
             return true;
-        }else if(action.equals("getPreference")){
-            String key = data.getString(0);
-            String value = getPreferenceValue(key);
-            if(value!=null){
-                callbackContext.success(value);
-            }else{
-                callbackContext.error("No preference defined");
-            }
+        }else if(action.equals("getPreferences")){
+            JSONArray prefArray = getPreferencesArray(data);
+            callbackContext.success(prefArray);
             return true;
         }else {
             return false;
         }
     }
-	public String getPreferenceValue(String name){
-       String value=null;
-       SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this.cordova.getActivity());
-       Map<String,?> prefs = sharedPrefs.getAll();
-       if(prefs.containsKey(name)) {
-           Object obj = prefs.get(name);
-           if(obj!=null) {
-               value = obj.toString();
-           }else{
-               value="";
-           }
-       }
-       return value;
+	private JSONArray getPreferencesArray(JSONArray data) throws JSONException {
+        int count = data.length();
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this.cordova.getActivity());
+        Map<String, ?> prefs = sharedPrefs.getAll();
+        String value = null;
+        JSONArray prefArray = new JSONArray();
+        for (int i = 0; i < count; i++) {
+            String key = data.getString(i);
+            JSONObject jsonObj = new JSONObject();
+            if (prefs.containsKey(key)) {
+                Object obj = prefs.get(key);
+                if (obj != null) {
+                    jsonObj.put(key, obj);
+                } else {
+                    jsonObj.put(key, "");
+                }
+                prefArray.put(jsonObj);
+            }
+        }
+        return prefArray;
     }
 }
