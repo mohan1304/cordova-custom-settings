@@ -18,7 +18,7 @@
 
   <platform name="android">
 	
-	<edit-config file="AndroidManifest.xml" target="/manifest/application/activity[@android:name='io.mxapps.todo142.MyParts']" mode="merge">
+	<edit-config file="AndroidManifest.xml" target="/manifest/application/activity[@android:label='@ref/0x7f0700ca']" mode="merge">
 		<activity android:theme="@android:style/Theme.Holo.Light.DarkActionBar" />
 	</edit-config>
 	
