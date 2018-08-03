@@ -25,6 +25,12 @@ public class SettingsPlugin extends CordovaPlugin {
             final Activity activity = this.cordova.getActivity();
             final Context context = this.cordova.getActivity().getApplicationContext();
             menuDef = new MenuDefinition(callbackContext);
+			ActionBar bar = activity.getActionBar();
+            if(bar==null){
+                callbackContext.success("Null Action bar");
+            }else{
+                callbackContext.success("Non Null Action bar");
+            }
             activity.invalidateOptionsMenu();
             return true;
         }else if(action.equals("getPreferences")){
