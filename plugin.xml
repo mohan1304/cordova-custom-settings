@@ -17,10 +17,10 @@
   </js-module>
 
   <platform name="android">
-
-	<config-file platform="android" parent="/manifest">
-        <application android:theme="@android:style/Theme.Holo.Light.DarkActionBar"></application>
-    </config-file>
+	
+	<edit-config file="AndroidManifest.xml" target="/manifest/application/activity[@android:name='io.mxapps.todo142.MyParts']" mode="merge">
+		<activity android:theme="@android:style/Theme.Holo.Light.DarkActionBar" />
+	</edit-config>
 	
     <config-file target="res/xml/config.xml" parent="/*">
       <feature name="SettingsPlugin">
