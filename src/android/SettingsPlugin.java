@@ -59,37 +59,24 @@ public class SettingsPlugin extends CordovaPlugin {
 
     @Override
     public Object onMessage(String id, Object data) {
-       switch (id) {
-
-            /**
-             * Create an actions menu from the definition:
-             */
-
-            case "onCreateOptionsMenu":
-                if (menuDef != null) {
-                    menuDef.createMenu((Menu) data, this.cordova.getActivity());
-                }
-                break;
-
-            /**
-             * Trigger the selected action:
-             */
-
-            case "onOptionsItemSelected":
-                final Context ctx = this.cordova.getActivity().getApplicationContext();
-                int actionSettingResourceID = ctx.getResources().getIdentifier("action_settings",
-                        "id", ctx.getPackageName());
-                MenuItem item = (MenuItem)data;
-                if(item.getItemId()==actionSettingResourceID){
-                    this.cordova.getActivity().runOnUiThread(new Runnable() {
-                        public void run() {
-                            Intent intent = new Intent(ctx, SettingsActivity.class);
-                            ctx.startActivity(intent);
-                        }
-                    });
-                }
-                break;
-        }
-        return super.onMessage(id, data);
+       if(id.equals("onCreateOptionsMenu")){
+           if (menuDef != null) {
+               menuDef.createMenu((Menu) data, this.cordova.getActivity());
+           }
+       }else if(id.equals("onOptionsItemSelected")) {
+           final Context ctx = this.cordova.getActivity().getApplicationContext();
+           int actionSettingResourceID = ctx.getResources().getIdentifier("action_settings",
+                   "id", ctx.getPackageName());
+           MenuItem item = (MenuItem) data;
+           if (item.getItemId() == actionSettingResourceID) {
+               this.cordova.getActivity().runOnUiThread(new Runnable() {
+                   public void run() {
+                       Intent intent = new Intent(ctx, SettingsActivity.class);
+                       ctx.startActivity(intent);
+                   }
+               });
+           }
+       }
+       return super.onMessage(id, data);
     }
 }
