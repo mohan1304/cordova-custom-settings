@@ -5,6 +5,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.view.Menu;
+
+import android.view.MenuItem;
 
 import org.apache.cordova.*;
 import org.json.JSONArray;
@@ -14,20 +17,15 @@ import org.json.JSONObject;
 import java.util.Map;
 
 public class SettingsPlugin extends CordovaPlugin {
-
+    private MenuDefinition menuDef = null;
     @Override
     public boolean execute(String action, JSONArray data, final CallbackContext callbackContext) throws JSONException {
 
         if (action.equals("settings")) {
             final Activity activity = this.cordova.getActivity();
             final Context context = this.cordova.getActivity().getApplicationContext();
-            this.cordova.getActivity().runOnUiThread(new Runnable() {
-                public void run() {
-                    Intent intent = new Intent(context, SettingsActivity.class);
-                    context.startActivity(intent);
-                    callbackContext.success("sucess");
-                }
-            });
+            menuDef = new MenuDefinition(callbackContext);
+            activity.invalidateOptionsMenu();
             return true;
         }else if(action.equals("getPreferences")){
             JSONArray prefArray = getPreferencesArray(data);
@@ -37,7 +35,7 @@ public class SettingsPlugin extends CordovaPlugin {
             return false;
         }
     }
-	private JSONArray getPreferencesArray(JSONArray data) throws JSONException {
+    private JSONArray getPreferencesArray(JSONArray data) throws JSONException {
         int count = data.length();
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this.cordova.getActivity());
         Map<String, ?> prefs = sharedPrefs.getAll();
@@ -57,5 +55,41 @@ public class SettingsPlugin extends CordovaPlugin {
             }
         }
         return prefArray;
+    }
+
+    @Override
+    public Object onMessage(String id, Object data) {
+       switch (id) {
+
+            /**
+             * Create an actions menu from the definition:
+             */
+
+            case "onCreateOptionsMenu":
+                if (menuDef != null) {
+                    menuDef.createMenu((Menu) data, this.cordova.getActivity());
+                }
+                break;
+
+            /**
+             * Trigger the selected action:
+             */
+
+            case "onOptionsItemSelected":
+                final Context ctx = this.cordova.getActivity().getApplicationContext();
+                int actionSettingResourceID = ctx.getResources().getIdentifier("action_settings",
+                        "id", ctx.getPackageName());
+                MenuItem item = (MenuItem)data;
+                if(item.getItemId()==actionSettingResourceID){
+                    this.cordova.getActivity().runOnUiThread(new Runnable() {
+                        public void run() {
+                            Intent intent = new Intent(ctx, SettingsActivity.class);
+                            ctx.startActivity(intent);
+                        }
+                    });
+                }
+                break;
+        }
+        return super.onMessage(id, data);
     }
 }

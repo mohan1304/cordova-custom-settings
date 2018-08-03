@@ -30,20 +30,14 @@
     </config-file>
 	
 	<config-file target="AndroidManifest.xml" parent="/manifest/application">
-		<activity android:name="com.custom.settings.SettingsMainActivity"></activity>
-		<activity android:name="com.custom.settings.SettingsActivity"
-            android:label="Settings"
-            android:parentActivityName="com.custom.settings.SettingsMainActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.custom.settings.SettingsMainActivity"/>
+		<activity android:name="com.custom.settings.SettingsActivity" android:label="Settings">
         </activity>
     </config-file>
 
     <source-file src="src/android/SettingsPlugin.java" target-dir="src/com/custom/settings/" />
-	<source-file src="src/android/SettingsMainActivity.java" target-dir="src/com/custom/settings/" />
 	<source-file src="src/android/SettingsActivity.java" target-dir="src/com/custom/settings/" />
 	<source-file src="src/android/SettingsFragment.java" target-dir="src/com/custom/settings/" />
+	<source-file src="src/android/MenuDefinition.java" target-dir="src/com/custom/settings/" />
 	
 	<resource-file src="src/android/res" target="res" />
   </platform>
