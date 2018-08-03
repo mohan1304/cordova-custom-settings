@@ -18,6 +18,10 @@
 
   <platform name="android">
 
+	<config-file platform="android" parent="/manifest">
+        <application android:theme="@android:style/Theme.Holo.Light.DarkActionBar"></application>
+    </config-file>
+	
     <config-file target="res/xml/config.xml" parent="/*">
       <feature name="SettingsPlugin">
         <param name="android-package" value="com.custom.settings.SettingsPlugin"/>
