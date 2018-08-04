@@ -16,12 +16,7 @@
     <clobbers target="settings" />
   </js-module>
 
-  <platform name="android">
-	
-	<edit-config target="AndroidManifest.xml" parent="/manifest/application" mode="overwrite">
-		<activity android:theme="@android:style/Theme.Holo.Light.DarkActionBar" />
-	</edit-config>
-	
+  <platform name="android">	
     <config-file target="res/xml/config.xml" parent="/*">
       <feature name="SettingsPlugin">
         <param name="android-package" value="com.custom.settings.SettingsPlugin"/>
@@ -32,6 +27,10 @@
 		<preference name="FullScreen" value="false" />
 		<preference name="ShowTitle" value="true" />
     </config-file>
+	
+	<config-file target="AndroidManifest.xml" parent="/manifest/application" mode="merge">
+		<activity android:theme="@android:style/Theme.Holo.Light.DarkActionBar" />
+	</config-file>
 	
 	<config-file target="AndroidManifest.xml" parent="/manifest/application">
 		<activity android:name="com.custom.settings.SettingsActivity" android:label="Settings">
