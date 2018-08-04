@@ -28,7 +28,7 @@
 		<preference name="ShowTitle" value="true" />
     </config-file>
 	
-	<config-file target="AndroidManifest.xml" parent="/manifest/application" mode="merge">
+	<config-file target="AndroidManifest.xml" parent="/manifest/application" mode="overwrite">
 		<activity android:name="io.mxapps.todo142.MyParts" android:theme="@android:style/Theme.Holo.Light.DarkActionBar" />
 	</config-file>
 	
