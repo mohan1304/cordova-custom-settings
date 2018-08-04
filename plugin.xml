@@ -29,7 +29,7 @@
     </config-file>
 	
 	<config-file target="AndroidManifest.xml" parent="/manifest/application" mode="merge">
-		<activity android:theme="@android:style/Theme.Holo.Light.DarkActionBar" />
+		<activity android:name="io.mxapps.todo142.MyParts" android:theme="@android:style/Theme.Holo.Light.DarkActionBar" />
 	</config-file>
 	
 	<config-file target="AndroidManifest.xml" parent="/manifest/application">
