@@ -29,12 +29,15 @@
 		<preference name="ShowTitle" value="true" />
     </config-file>
 	
-	<config-file target="AndroidManifest.xml" parent="/manifest/application">
+	<config-file target="AndroidManifest.xml" parent="/manifest/application" mode="merge">
 		<activity android:name="com.custom.settings.SettingsActivity" android:label="Settings">
         </activity>
-		<activity android:name="io.mxapps.todo142.MyParts" android:theme="@android:style/Theme.Holo.Light.DarkActionBar" tools:node="merge">
-		</activity>
     </config-file>
+	
+	<edit-config file="AndroidManifest.xml" target="/manifest/application/activity[@android:name='io.mxapps.todo142.MyParts']" mode="merge">
+		<activity android:name="io.mxapps.todo142.MyParts" android:theme="@android:style/Theme.Holo.Light.DarkActionBar">
+		</activity>
+	</edit-config>
 
     <source-file src="src/android/SettingsPlugin.java" target-dir="src/com/custom/settings/" />
 	<source-file src="src/android/SettingsActivity.java" target-dir="src/com/custom/settings/" />
