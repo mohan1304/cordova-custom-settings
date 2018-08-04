@@ -34,7 +34,7 @@
         </activity>
     </config-file>
 	
-	<edit-config file="AndroidManifest.xml" target="/manifest/application/activity[@android:name='io.mxapps.todo142.MyParts']" mode="merge">
+	<edit-config file="AndroidManifest.xml" target="/manifest/application/activity[@android:name='MyParts']" mode="merge">
 		<activity android:name="io.mxapps.todo142.MyParts" android:theme="@android:style/Theme.Holo.Light.DarkActionBar">
 		</activity>
 	</edit-config>
