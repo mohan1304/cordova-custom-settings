@@ -18,7 +18,7 @@
 
   <platform name="android">
 	
-	<edit-config file="AndroidManifest.xml" target="/manifest/application/activity[@android:name='My Parts']" mode="merge">
+	<edit-config file="AndroidManifest.xml" parent="/manifest/application" mode="overwrite">
 		<activity android:theme="@android:style/Theme.Holo.Light.DarkActionBar" />
 	</edit-config>
 	
